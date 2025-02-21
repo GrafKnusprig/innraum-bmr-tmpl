@@ -23,22 +23,30 @@
 
 % --- Set Colors ---
 \setbeamercolor{normal text}{fg=customtext}  % Apply text color
-\setbeamercolor{frametitle}{fg=white} % Page title banner with white text
+\setbeamercolor{frametitle}{fg=customtext} % Page title banner with white text
 \addtobeamertemplate{frametitle}{}{\vspace{0.5cm}} % Add margin below frametitle
 \setbeamercolor{item}{fg=customtext} % Bullet points in custom text color
 
-
 % --- Custom Highlight Commands ---
 \newcommand{\highlight}[1]{\textbf{\textcolor{highlight}{#1}}} % Highlighted text
-\newcommand{\markhighlight}[1]{\colorbox{highlight}{\textcolor{customtext}{#1}}} % Highlighted background text with white text
+\newcommand{\markhighlight}[1]{\colorbox{highlight}{\textcolor{white}{#1}}} % Highlighted background text with white text
+
+% Global background with a gray border
+\setbeamertemplate{background canvas}{%
+  \begin{tikzpicture}[remember picture, overlay]
+    \draw[lightgray, line width=1pt]
+      ([xshift=5pt,yshift=-5pt]current page.north west) rectangle
+      ([xshift=-5pt,yshift=1cm]current page.south east);
+  \end{tikzpicture}%
+}
 
 % --- Header/Footer ---
 \setbeamertemplate{headline}{
     \begin{tikzpicture}[remember picture, overlay]
-        \ifnum \value{page}>1
-        \fill [customtext] (current page.north west) rectangle ([yshift=-1.05cm]current page.north east); % Background for header
-        \fi
-        \node[anchor=north east] at ([yshift=-0.05cm]current page.north east) {
+        % \ifnum \value{page}>1
+        % \fill [customtext] (current page.north west) rectangle ([yshift=-1.05cm]current page.north east); % Background for header
+        % \fi
+        \node[anchor=north east] at ([yshift=-0.15cm, xshift=-0.2cm]current page.north east) {
             \includegraphics[width=2cm]{Logos/innraumeulogo.png} % Header image (top-right corner)
         };
     \end{tikzpicture}
@@ -63,7 +71,7 @@
 % \setbeameroption{hide notes}  % Generates a PDF without notes
 % \setbeameroption{show only notes}  % Generates a PDF with only notes
 
-% \newcommand{\titleimage}{Images/image1.jpg} % Title page background image, remove if not needed.
+\newcommand{\titleimage}{Images/title-page-background.jpg} % Title page background image, remove if not needed.
 
 \begin{document}
 
@@ -77,20 +85,21 @@
 \fi
 \begin{frame}
     \color{white} % Ensures all text in the frame is white
-    \begin{center}
-        \vspace{2cm}
-        \textbf{\Huge Title of the Presentation} \\
-        \vspace{1cm}
-        {\Large{Subtitle Goes Here}} \\
-        \vspace{1cm}
-        {\large\markhighlight{Subsubtitle Goes Here}}
-    \end{center}
+    \vspace{1cm}
+    \hspace{6cm}\textbf{\Huge Title of the} \\
+    \vspace{.3cm}
+    \hspace{6cm}\textbf{\Huge Presentation} \\
+    \vspace{.6cm}
+    \hspace{6cm}{\Large{Subtitle Goes Here}} \\
+    \vspace{.6cm}
+    \hspace{6cm}{\large\markhighlight{Subsubtitle Goes Here}}
+
 \end{frame}
 \setbeamercolor{background canvas}{bg=white}
 }
 
 % --- Slide 1: Bullet List ---
-\begin{frame}{Bullet List Slide}
+\begin{frame}[shrink]{Bullet List Slide}
     \begin{itemize}
         \item First bullet point
               \begin{itemize}
@@ -102,66 +111,97 @@
         \item Second bullet point
         \item Third bullet point
     \end{itemize}
+    \vspace*{1cm}
+
+    \note{Here are some notes for the first slide.}
+
 \end{frame}
-\note{Here are some notes for the first slide.}
+
 
 % --- Slide 2: Text and One Image ---
-\begin{frame}{Text and Image Slide}
-    Here is some explanatory text alongside an image.
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{Images/image1.jpg}
-    \end{center}
-\end{frame}
-\note{\begin{itemize}
-        \item Here are some notes for the second slide.
-        \item These notes will appear on the second screen.
-    \end{itemize}}
-
-% --- Slide 3: Text and Two Images ---
-\begin{frame}{Text and Two Images Slide}
-    Here is some more text with two images.
+\begin{frame}[shrink]{Text and Image Slide}
     \begin{columns}
         \column{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Images/image1.jpg}
+        \begin{itemize}
+            \item This is the second level of the notes.
+            \item You can add more levels if needed.
+            \item This is the second level of the notes.
+            \item You can add more levels if needed.
+            \item This is the second level of the notes.
+            \item You can add more levels if needed.
+        \end{itemize}
         \column{0.5\textwidth}
-        \includegraphics[width=\textwidth]{Images/image2.jpg}
+        \includegraphics[height=0.5\textheight]{Images/image1.jpg}
     \end{columns}
-\end{frame}
-\note{\includegraphics[width=0.5\textwidth]{Images/image1.jpg}
-    \begin{itemize}
-        \item You can also add images to the notes.
-        \item If you ever feel you need that.
-    \end{itemize}}
+    \vspace*{1cm}
 
-% --- Slide 4: Four Images, No Text ---
+    \note{
+        \begin{itemize}
+        \item Here are some notes for the second slide.
+        \item These notes will appear on the second screen.
+        \end{itemize}
+    }
+
+\end{frame}
+
+
+% --- Slide 3: Text and Two Images ---
+\begin{frame}[shrink]{Text and Two Images Slide}
+    Here is some more text with two images.
+    \begin{itemize}
+        \item This is the second level of the notes.
+        \item You can add more levels if needed.
+    \end{itemize}
+
+    \includegraphics[width=0.48\textwidth]{Images/image1.jpg}
+    \includegraphics[width=0.48\textwidth]{Images/image2.jpg}
+
+    \vspace*{1cm}
+
+    \note{
+        \includegraphics[width=0.5\textwidth]{Images/image1.jpg}
+        \begin{itemize}
+            \item You can also add images to the notes.
+            \item If you ever feel you need that.
+        \end{itemize}
+    }
+
+\end{frame}
+
+
+% --- Slide 4: Three Images, No Text ---
 {
     \newcommand{\imgheight}{0.35\textheight} % Define a variable for height
     \begin{frame}{Images Only}
         \centering
         \includegraphics[width=0.48\textwidth, height=\imgheight, keepaspectratio]{Images/image1.jpg}
         \includegraphics[width=0.48\textwidth, height=\imgheight, keepaspectratio]{Images/image2.jpg}
-
         \includegraphics[width=0.48\textwidth, height=\imgheight, keepaspectratio]{Images/image3.jpg}
-        \includegraphics[width=0.48\textwidth, height=\imgheight, keepaspectratio]{Images/image4.jpg}
     \end{frame}
 }
 
 % --- Slide 5: QR Code ---
 {
     % Set background color
-    \setbeamercolor{background canvas}{bg=customtext}
-
+    \setbeamertemplate{background canvas}{%
+    \begin{tikzpicture}[remember picture, overlay]
+      \fill[customtext]([xshift=5pt,yshift=-5pt]current page.north west) rectangle
+      ([xshift=-5pt,yshift=1cm]current page.south east);
+    \end{tikzpicture}%
+    }
     \begin{frame}
         \color{white} % Ensures all text in the frame is white
-        \centering
-        {\huge \textbf{Scan the QR Code}}\\[0.5cm]
-        {\Large Get in touch!}\\[0.5cm]
-        {\Large innraum.eu}\\[1.0cm]
-        \includegraphics[width=3cm]{Logos/qr_code_innraum_eu.png}
-    \end{frame}
 
-    % Reset background for following frames
-    \setbeamercolor{background canvas}{bg=white}
+        \begin{columns}
+            \column{0.3\textwidth}
+            \includegraphics[width=4.5cm]{Logos/qr_code_innraum_eu.png}
+            \column{0.5\textwidth}
+            \centering
+            {\Large\markhighlight{INNOVATION VERBINDET}}\\[0.5cm]
+            {\Huge INNRAUM.EU}\\[1.0cm]
+        \end{columns}
+        \vspace*{1cm}
+    \end{frame}
 }
 
 \end{document}
