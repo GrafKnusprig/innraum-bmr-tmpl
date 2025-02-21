@@ -1,0 +1,58 @@
+# LaTeX auxiliary files
+*.aux
+*.bbl
+*.blg
+*.brf
+*.fls
+*.fdb_latexmk
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.synctex.gz
+*.synctex(busy)
+
+# LaTeX intermediate and output files
+*.dvi
+*.pdf
+*.ps
+*.synctex
+*.xdv
+
+# Editors and IDE files
+*.bak
+*~
+*.swp
+*.swo
+*.DS_Store
+Thumbs.db
+
+# TeXShop and TeXWorks files
+*.pdfsync
+*.synctex.gz
+*.synctex(busy)
+*.backup
+
+# Miscellaneous
+*.lof
+*.lot
+*.idx
+*.ilg
+*.ind
+*.glg
+*.glo
+*.gls
+*.ist
+*.acn
+*.acr
+*.alg
+*.bcf
+*.run.xml
+
+# Latexmk specific
+latexmkrc
+
+# Overleaf specific
+*.pdf(autosave)
